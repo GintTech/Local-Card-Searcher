@@ -1,23 +1,29 @@
 ﻿using System.Diagnostics;
 
-// Local Card Searcher ; Version: 2.1
+// Local Card Searcher ; Version: 3.1
 // 2023-06-30
+// Last Edited 2023-10-10
 // Created By James Ginther
 // Input: String
 // Processing: Adds user's String to URL Strings to make valid search queries.
 // Output: Opens URLs in user's defeault browser.
 
+//Base URLs to use as queries
 string swirlBase = "https://swirlyeg.com/search?page=1&q=";
 string tapsBase = "https://tapsgames.com/search?page=1&q=";
 string cbGamesBase = "https://commonboxgames.com/search?page=1&q=";
 string prismaBase = "https://www.prismatcg.com/store/search/";
+string hpwBase = "https://hpwcards.com/search?page=1&q=";
 bool contFlag = true;
 
-Console.WriteLine("Local Card Searcher ; Version 2.1");
+//Authorial Credit Text
+Console.WriteLine("Local Card Searcher ; Version 3.1");
 Console.WriteLine("Created by James Ginther, james.ginther01@gmail.com, Github: GintTech");
 Console.WriteLine("2023-06-30");
 Console.WriteLine("");
 
+// Flag doesn't change anymore
+// Request user input, if it's not something that quits the program append it to the base strings and open the result strings as links
 while (contFlag == true)
 {
     Console.WriteLine("Please enter the name of the card you wish to search or q to quit.");
@@ -34,6 +40,7 @@ while (contFlag == true)
     string tapsQuery = tapsBase + "*" + userQuery + "*";
     string cbGamesQuery = cbGamesBase + "*" + userQuery + "*";
     string prismaQuery = prismaBase + userQuery;
+    string hpwQuery = hpwBase + "*" + userQuery + "*";
 
     try
     {
@@ -91,5 +98,18 @@ while (contFlag == true)
     {
         Console.WriteLine("An error occurred: " + ex.Message);
     }
-}
+    try
+    {
+        ProcessStartInfo psi = new ProcessStartInfo
+        {
+            FileName = hpwQuery,
+            UseShellExecute = true
+        };
 
+        Process.Start(psi);
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("An error occurred: " + ex.Message);
+    }
+}
