@@ -14,12 +14,13 @@ string tapsBase = "https://tapsgames.com/search?page=1&q=";
 string cbGamesBase = "https://commonboxgames.com/search?page=1&q=";
 string prismaBase = "https://www.prismatcg.com/store/search/";
 string hpwBase = "https://hpwcards.com/search?page=1&q=";
+string eclipseBase = "https://eclipsegames.ca/search?type=product&options%5Bprefix%5D=last&q=";
 bool contFlag = true;
 
 //Authorial Credit Text
-Console.WriteLine("Local Card Searcher ; Version 3.1");
+Console.WriteLine("Local Card Searcher ; Version 3.2");
 Console.WriteLine("Created by James Ginther, james.ginther01@gmail.com, Github: GintTech");
-Console.WriteLine("2023-06-30");
+Console.WriteLine("2024-02-24");
 Console.WriteLine("");
 
 // Flag doesn't change anymore
@@ -41,6 +42,7 @@ while (contFlag == true)
     string cbGamesQuery = cbGamesBase + "*" + userQuery + "*";
     string prismaQuery = prismaBase + userQuery;
     string hpwQuery = hpwBase + "*" + userQuery + "*";
+    string eclipseQuery = eclipseBase + "*" + userQuery + "*";
 
     try
     {
@@ -103,6 +105,20 @@ while (contFlag == true)
         ProcessStartInfo psi = new ProcessStartInfo
         {
             FileName = hpwQuery,
+            UseShellExecute = true
+        };
+
+        Process.Start(psi);
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("An error occurred: " + ex.Message);
+    }
+    try
+    {
+        ProcessStartInfo psi = new ProcessStartInfo
+        {
+            FileName = eclipseQuery,
             UseShellExecute = true
         };
 
