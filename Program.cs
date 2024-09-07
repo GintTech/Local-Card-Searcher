@@ -1,11 +1,12 @@
 ﻿using System.Diagnostics;
 
-// Local Card Searcher ; Version: 3.3
-// Last Edited 2024-02-27
+// Local Card Searcher ; Version: 3.4
+// Last Edited 2024-09-07
 // Created By James Ginther
 // Input: String
 // Processing: Adds user's String to URL Strings to make valid search queries.
 // Output: Opens URLs in user's default browser.
+// Target runtime win-x86, deployment mode: self-contained
 
 //Base URLs to use as queries
 string swirlBase = "https://swirlyeg.com/search?page=1&q=";
@@ -14,13 +15,13 @@ string cbGamesBase = "https://commonboxgames.com/search?page=1&q=";
 string prismaBase = "https://www.prismatcg.com/store/search/";
 string hpwBase = "https://hpwcards.com/search?page=1&q=";
 string eclipseBase = "https://eclipsegames.ca/search?type=product&options%5Bprefix%5D=last&q=";
-string pokeddictionBase = "https://www.pokeddiction.com/search?q=";
+string TwoOhThreeBase = "https://203collectibles.com/search?type=product&options%5Bprefix%5D=last&q=";
 bool contFlag = true;
 
 //Authorial Credit Text
-Console.WriteLine("Local Card Searcher ; Version 3.3");
+Console.WriteLine("Local Card Searcher ; Version 3.4");
 Console.WriteLine("Created by James Ginther, james.ginther01@gmail.com, Github: GintTech");
-Console.WriteLine("2024-02-27");
+Console.WriteLine("2024-09-07");
 Console.WriteLine("");
 
 // Flag doesn't change anymore
@@ -43,7 +44,7 @@ while (contFlag == true)
     string prismaQuery = prismaBase + userQuery;
     string hpwQuery = hpwBase + "*" + userQuery + "*";
     string eclipseQuery = eclipseBase + "*" + userQuery + "*";
-    string pokeddictionQuery = pokeddictionBase + "*" + userQuery + "*" + "&options[prefix]=last";
+    string TwoOhThreeQuery = TwoOhThreeBase + userQuery;
 
     try
     {
@@ -133,7 +134,7 @@ while (contFlag == true)
     {
         ProcessStartInfo psi = new ProcessStartInfo
         {
-            FileName = pokeddictionQuery,
+            FileName = TwoOhThreeQuery,
             UseShellExecute = true
         };
 
